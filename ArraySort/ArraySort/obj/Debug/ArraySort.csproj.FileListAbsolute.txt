@@ -1,0 +1,7 @@
+C:\Users\yakov\source\repos\ArraySort\ArraySort\bin\Debug\ArraySort.exe.config
+C:\Users\yakov\source\repos\ArraySort\ArraySort\bin\Debug\ArraySort.exe
+C:\Users\yakov\source\repos\ArraySort\ArraySort\bin\Debug\ArraySort.pdb
+C:\Users\yakov\source\repos\ArraySort\ArraySort\obj\Debug\ArraySort.csprojResolveAssemblyReference.cache
+C:\Users\yakov\source\repos\ArraySort\ArraySort\obj\Debug\ArraySort.csproj.CoreCompileInputs.cache
+C:\Users\yakov\source\repos\ArraySort\ArraySort\obj\Debug\ArraySort.exe
+C:\Users\yakov\source\repos\ArraySort\ArraySort\obj\Debug\ArraySort.pdb
