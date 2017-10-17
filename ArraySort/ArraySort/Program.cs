@@ -19,14 +19,19 @@ namespace ArraySort
             }
             Console.WriteLine();
 
-            //bubblesort(array);// console app bubblesort
-            //gnomesort(array);//console app 2
-            //mergesort(array);//console app 3
-            //countingsort(array);//console app 4
-            //bucketsort(array);//console app 5
-            //combsort(array);//console app 6
-            //beadsort(array);//console app 7
-            //selectionsort(array);//console app 1
+            //bubblesort(array);
+            //gnomesort(array);
+            //mergesort(array);
+            //countingsort(array);
+            //bucketsort(array);
+            //combsort(array);
+            //beadsort(array);
+            //selectionsort(array);
+            //pancakesort(array);
+            //stoogesort(array);
+            //shakersort(array);
+            //radixsort(array);
+            //hoaresort(array);
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -330,5 +335,173 @@ namespace ArraySort
             }
             Array.Reverse(array);
         }
+        private static void pancakesort(int[] array)
+        {
+            for (int i = array.Count() - 1; i >= 0; --i)
+            {
+                int pos = i;
+
+                for (int j = 0; j < i - 1; j++)
+                {
+                    if (array[j].CompareTo(array[pos]) > 0)
+                    {
+                        pos = j;
+                    }
+                }
+
+                if (pos == i)
+                {
+                    continue;
+                }
+
+                if (pos != 0)
+                {
+                    flip(array, pos + 1);
+                }
+
+                flip(array, i + 1);
+            }
+
+            void flip(int[] arr, int i)
+            {
+                for (int y = 0; y < i; y++)
+                {
+                    --i;
+                    int p = arr[y];
+                    arr[y] = arr[i];
+                    arr[i] = p;
+                }
+            }
+        }
+        private static void stoogesort(int[] array)
+        {
+
+            int l = 0;
+            int o = array.Length-1;
+            stoogesort(array, l, o);
+            void stoogesort(int[] q, int i, int j)
+            {
+                if (q[j] < q[i])
+                {
+                    int u = q[j];
+                    q[j] = q[i];
+                    q[i] = u;
+                }
+                if (j - i > 1)
+                {
+                    int t = (j - i + 1) / 3;
+                    stoogesort(q, i, j - t);
+                    stoogesort(q, i + t, j);
+                    stoogesort(q, i, j - t);
+                }
+            }
+        }
+        private static void shakersort(int[] array)
+        {
+            int left = 0,
+                right = array.Length - 1,
+                count = 0;
+
+            while (left <= right)
+            {
+                for (int i = left; i < right; i++)
+                {
+                    count++;
+                    if (array[i] > array[i + 1])
+                        Swap(array, i, i + 1);
+                }
+                right--;
+
+                for (int i = right; i > left; i--)
+                {
+                    count++;
+                    if (array[i - 1] > array[i])
+                        Swap(array, i - 1, i);
+                }
+                left++;
+            }
+            void Swap(int[] a, int i, int j)
+            {
+                int glass = a[i];
+                a[i] = a[j];
+                a[j] = glass;
+            }
+        }
+        private static void radixsort(int[] array)
+        {
+            for (int j = 1; j < 3; j++)
+            {
+                sort(array, j);
+            }
+            void sort(int[] arra, int j)
+            {
+                List<int[]> a = new List<int[]>();
+                for (int i = 0; i < 10; i++)
+                {
+                    int[] at = new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+                    a.Add(at);
+                }
+                for (int i = 0; i < arra.Length; i++)
+                {
+                    int d = Convert.ToInt32(Math.Truncate(arra[i] / Math.Pow(10, 2 - 1) % 10));
+                    int n = 0;
+                    while (a[d][n] != -1)
+                    {
+                        n++;
+                    }
+                    a[d][n] = arra[i];
+                }
+                combine(a, arra);
+                foreach (var p in a)
+                {
+                    for (int i = 0; i < a[0].Length; i++)
+                    {
+                        p[i] = -1;
+                    }
+                }
+            }
+            void combine(List<int[]> a, int[] arra)
+            {
+                int h = 0;
+                for (int i = 0; i < arra.Length; i++)
+                {
+                    int g = 0;
+                    while (a[i][g] != -1)
+                    {
+                        arra[h] = a[i][g];
+                        g++;
+                        h++;
+                    }
+                }
+            }
+
+        }
+        private static void hoaresort(int[] array)
+        {
+            hoaresort(array, 0, array.Length - 1);
+            void hoaresort(int[] q, int start, int end)
+            {
+                if (end == start) return;
+                var pivot = q[end];
+                var storeIndex = start;
+                for (int i = start; i <= end - 1; i++)
+                    if (q[i] <= pivot)
+                    {
+                        var t = q[i];
+                        q[i] = q[storeIndex];
+                        q[storeIndex] = t;
+                        storeIndex++;
+                    }
+
+                var n = q[storeIndex];
+                q[storeIndex] = q[end];
+                q[end] = n;
+                if (storeIndex > start) hoaresort(q, start, storeIndex - 1);
+                if (storeIndex < end) hoaresort(q, storeIndex + 1, end);
+
+            }
+        }
+
     }
+   
 }
